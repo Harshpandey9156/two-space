@@ -2,12 +2,16 @@
 import React, {useState} from 'react'
 import {auth} from "@/lib/firebase"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+// import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 const AuthPage = () => {
    const [isLogin, setLogin] = useState(true) 
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
    const [message, setMessage] = useState("")
+
+   const router = useRouter()
 
    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -16,10 +20,15 @@ const AuthPage = () => {
         if (isLogin) {
             await signInWithEmailAndPassword(auth, email, password)
             setMessage("Logged in successfully!")
+            router.push('/posts/create')
+
         }
         else {
             await createUserWithEmailAndPassword(auth, email, password)
             setMessage("Account created!")
+            router.push('/posts/create')
+
+
         }
     }
 
@@ -58,11 +67,11 @@ const AuthPage = () => {
         <p className="text-sm text-center mt-3 text-gray-600">
             {isLogin ? "Don't have an account?" : 'Already have one'}{""}
             <button
-          className="text-rose-500 underline"
-          onClick={() => setLogin(!isLogin)}
-        >
-          {isLogin ? "Sign up" : "Login"}
-        </button>
+              className="text-rose-500 underline"
+              onClick={() => setLogin(!isLogin)}
+            >
+              {isLogin ? "Sign up" : "Login"}
+            </button>
         </p>
 
         {message && <p className='text-center text-sm mt-4 text-green-600'>{message}</p>}
