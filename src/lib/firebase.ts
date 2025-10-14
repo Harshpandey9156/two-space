@@ -5,12 +5,14 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBHvcAKM4HJN1x2kmYP2Sd7k6zL7DP5qnk",
+  authDomain: "two-space-dating.firebaseapp.com",
+  projectId: "two-space-dating",
+  storageBucket: "two-space-dating.firebasestorage.app",
+  messagingSenderId: "768385321845",
+  appId: "1:768385321845:web:b2e9ff5778b03d19ae613c",
+  measurementId: "G-MRVYTPCG1X"
+  
 };
 
 console.log(firebaseConfig);
