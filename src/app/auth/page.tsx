@@ -5,8 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useRouter } from "next/navigation";  // ✅ add this
-
+import { useRouter } from "next/navigation";   
 const AuthPage = () => {
   const [isLogin, setLogin] = useState(true);
   const [email, setEmail] = useState("");
