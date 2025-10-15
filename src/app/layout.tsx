@@ -1,4 +1,5 @@
 // app/layout.tsx
+import { AuthProvider } from "./context/AuthContext";
 import "./globals.css";
 import { ReactNode } from "react";
 
@@ -13,7 +14,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <a href="/dashboard" className="hover:underline">Dashboard</a>
           </div>
         </nav>
-        <main className="p-6">{children}</main>
+        <main className="p-6">
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </main>
       </body>
     </html>
   );
