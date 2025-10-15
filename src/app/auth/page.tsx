@@ -1,4 +1,3 @@
- 
 "use client";
 import React, { useState } from "react";
 import { auth } from "@/lib/firebase";
@@ -6,25 +5,18 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useRouter } from "next/navigation";   
- 
-"use client"
-import React, {useState} from 'react'
-import {auth} from "@/lib/firebase"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
-// import { useRouter } from 'next/router'
-import { useRouter } from 'next/navigation'
- 
+import { useRouter } from "next/navigation";
+
 const AuthPage = () => {
-  const [isLogin, setLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const router = useRouter();  // ✅ initialize router
+  const router = useRouter();
 
- 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setMessage("");
 
     try {
       if (isLogin) {
@@ -33,33 +25,11 @@ const AuthPage = () => {
       } else {
         await createUserWithEmailAndPassword(auth, email, password);
         setMessage("Account created!");
+        router.push('/onboarding')
       }
- 
-   const router = useRouter()
 
-   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    try {
-        if (isLogin) {
-            await signInWithEmailAndPassword(auth, email, password)
-            setMessage("Logged in successfully!")
-            router.push('/posts/create')
-
-        }
-        else {
-            await createUserWithEmailAndPassword(auth, email, password)
-            setMessage("Account created!")
-            router.push('/posts/create')
-
-
-        }
-    }
- 
-
-      // ✅ Redirect to /profile after success
-      router.push("/profile");
     } catch (error: any) {
+      // Show error message from Firebase
       setMessage(error.message);
     }
   };
@@ -78,6 +48,7 @@ const AuthPage = () => {
             className="w-full p-2 border rounded"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             type="password"
@@ -85,6 +56,7 @@ const AuthPage = () => {
             className="w-full p-2 border rounded"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
           <button
@@ -96,23 +68,13 @@ const AuthPage = () => {
         </form>
 
         <p className="text-sm text-center mt-3 text-gray-600">
- 
           {isLogin ? "Don't have an account?" : "Already have one?"}{" "}
           <button
             className="text-rose-500 underline"
-            onClick={() => setLogin(!isLogin)}
+            onClick={() => setIsLogin(!isLogin)}
           >
             {isLogin ? "Sign up" : "Login"}
           </button>
- 
-            {isLogin ? "Don't have an account?" : 'Already have one'}{""}
-            <button
-              className="text-rose-500 underline"
-              onClick={() => setLogin(!isLogin)}
-            >
-              {isLogin ? "Sign up" : "Login"}
-            </button>
- 
         </p>
 
         {message && (

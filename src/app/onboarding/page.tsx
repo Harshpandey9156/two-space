@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { db, storage } from "@/lib/firebase";
 import { auth } from "@/lib/firebase";
@@ -9,7 +9,7 @@ import { doc, setDoc } from "firebase/firestore";
 
 export default function OnboardingPage() {
   const router = useRouter();
-  const user = auth.currentUser;
+  const [user, setUser] = useState(auth.currentUser);
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -19,6 +19,11 @@ export default function OnboardingPage() {
   const [photo, setPhoto] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+  const unsubscribe = auth.onAuthStateChanged((u) => setUser(u));
+  return () => unsubscribe();
+}, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -31,7 +36,7 @@ export default function OnboardingPage() {
 
     if (photo) {
       console.log("Uploading photo...");
-      const photoRef = ref(storage, `profiles/${user.uid}/${photo.name}`);
+      const photoRef = ref(storage, `profiles/${user.uid}/${Date.now()}-${photo.name}`);
       await uploadBytes(photoRef, photo);
       photoURL = await getDownloadURL(photoRef);
       console.log("Photo uploaded:", photoURL);
@@ -45,7 +50,7 @@ export default function OnboardingPage() {
       age: Number(age),
       gender,
       lookingFor,
-      interests: interests.split(",").map((i) => i.trim()),
+      interests: interests.split(",").map(i => i.trim()).filter(i => i),
       photoURL,
       createdAt: new Date(),
     });
