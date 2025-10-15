@@ -1,42 +1,22 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useAuth } from "@/hook/useAuth";
+import { useProtectedRoute } from "@/hook/useProtectedRoute";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 
 export default function ProfilePage() {
-  const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, loading } = useProtectedRoute();
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-gray-500 text-lg">Checking authentication...</p>
-      </div>
-    );
-  }
- 
-  if (!user) {
-    router.push("/auth");
-    return null;
-  }
- 
+  if (loading) return <p>Loading...</p>;
+  if (!user) return null; // Redirect handled automatically
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-rose-50">
-      <div className="bg-white p-8 rounded-xl shadow-lg text-center w-96">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">
-          Welcome, {user.email}
-        </h1>
-        <p className="text-gray-500 mb-6">  
-          You’re successfully logged in 🎉
-        </p>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-rose-50">
+      <div className="bg-white p-8 rounded-xl shadow-md">
+        <h1 className="text-xl font-semibold">Welcome {user.email}</h1>
         <button
-          onClick={async () => {
-            await signOut(auth);
-            router.push("/auth");
-          }}
-          className="bg-rose-500 text-white px-6 py-2 rounded-full hover:bg-rose-600 transition"
+          onClick={async () => await signOut(auth)}
+          className="bg-rose-500 text-white px-4 py-2 rounded mt-4"
         >
           Logout
         </button>
