@@ -6,7 +6,7 @@ const CLOUDINARY_CLOUD_NAME = "dhhof74np";
 const CLOUDINARY_UPLOAD_PRESET = "posts_unsigned";
 
 const PostCard = () => {
-  const { user } = useAuth();
+  const { firebaseUser: user } = useAuth();
   const [content, setContent] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,6 @@ const PostCard = () => {
     try {
       let imageUrl = "";
 
-      // Upload image to Cloudinary if present
       if (image) {
         const formData = new FormData();
         formData.append("file", image);

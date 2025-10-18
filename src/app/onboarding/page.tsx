@@ -46,7 +46,7 @@ export default function OnboardingPage() {
     await setDoc(doc(db, "users", user.uid), {
       uid: user.uid,
       email: user.email,
-      name,
+      name: name,
       age: Number(age),
       gender,
       lookingFor,
