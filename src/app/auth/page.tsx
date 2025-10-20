@@ -31,7 +31,7 @@ const AuthPage = () => {
       }
 
     } catch (error: any) {
-      // Show error message from Firebase
+      
       setMessage(error.message);
     }
   };
