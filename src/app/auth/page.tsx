@@ -22,6 +22,8 @@ const AuthPage = () => {
       if (isLogin) {
         await signInWithEmailAndPassword(auth, email, password);
         setMessage("Logged in successfully!");
+        // router.push('/posts/create')
+        router.push('/discover')
       } else {
         await createUserWithEmailAndPassword(auth, email, password);
         setMessage("Account created!");
