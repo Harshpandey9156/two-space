@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useAuth } from "@/app/context/AuthContext";
+import { Switch } from "@mui/material";
 
 const CLOUDINARY_CLOUD_NAME = "dhhof74np";
 const CLOUDINARY_UPLOAD_PRESET = "posts_unsigned";
@@ -11,6 +12,7 @@ const PostCard = () => {
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +50,7 @@ const PostCard = () => {
           authorId: user.uid,
           content,
           imageUrl,
-          isPublic: false,
+          isPublic,
         }),
       });
 
@@ -80,6 +82,15 @@ const PostCard = () => {
           accept="image/*"
           onChange={(e) => setImage(e.target.files?.[0] || null)}
         />
+
+        <Switch
+        checked={isPublic}
+        onChange={(e) => setIsPublic(e.target.checked)}
+        color="primary"
+        />
+        <p>
+          {isPublic? "🌍 This post will be public" : "🔒 This post is private"}
+        </p>
         <button type="submit" disabled={loading}>
           {loading ? "Posting..." : "Post"}
         </button>

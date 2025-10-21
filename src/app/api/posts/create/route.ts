@@ -98,7 +98,7 @@ export async function POST(req: Request) {
       authorId,
       content,
       imageUrl: imageUrl || "",
-      isPublic: false,
+      isPublic: isPublic?? false,
       createdAt: new Date(),
     };
 

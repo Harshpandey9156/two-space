@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.4",
     "@tailwindcss/postcss": "^4.1.14",
     "cloudinary": "^2.7.0",
     "firebase": "^12.4.0",

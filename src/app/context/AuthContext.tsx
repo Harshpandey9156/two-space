@@ -63,46 +63,46 @@
  
 
 
-"use client";
+// "use client";
 
-import { onAuthStateChanged, User } from "firebase/auth";
-import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "@/lib/firebase";
+// import { onAuthStateChanged, User } from "firebase/auth";
+// import { createContext, useContext, useEffect, useState } from "react";
+// import { auth } from "@/lib/firebase";
 
-interface AuthContextType {
-  user: User | null;
-  loading: boolean;
-}
+// interface AuthContextType {
+//   user: User | null;
+//   loading: boolean;
+// }
 
-const AuthContext = createContext<AuthContextType>({
-  user: null,
-  loading: true,
-});
+// const AuthContext = createContext<AuthContextType>({
+//   user: null,
+//   loading: true,
+// });
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+// export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+//   const [user, setUser] = useState<User | null>(null);
+//   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-      setLoading(false);
-    });
+//   useEffect(() => {
+//     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+//       setUser(firebaseUser);
+//       setLoading(false);
+//     });
 
-    return () => unsubscribe();
-  }, []);
+//     return () => unsubscribe();
+//   }, []);
 
-  if (loading) {
+//   if (loading) {
     
-    return (
-      <div className="flex items-center justify-center h-screen text-lg font-semibold">
-        Loading...
-      </div>
-    );
-  }
+//     return (
+//       <div className="flex items-center justify-center h-screen text-lg font-semibold">
+//         Loading...
+//       </div>
+//     );
+//   }
 
-  return (
-    <AuthContext.Provider value={{ user, loading }}>
+//   return (
+//     <AuthContext.Provider value={{ user, loading }}>
  
 "use client";
 import { onAuthStateChanged, User } from "firebase/auth";
