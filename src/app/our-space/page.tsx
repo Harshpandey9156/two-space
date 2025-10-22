@@ -34,7 +34,6 @@ export default function OurSpace() {
             ...doc.data(),
           })) as Post[];
 
-          // Sort posts by createdAt descending (latest first)
           myPosts.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
 
           setPosts(myPosts);

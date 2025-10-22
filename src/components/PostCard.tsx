@@ -88,9 +88,11 @@ const PostCard = () => {
         onChange={(e) => setIsPublic(e.target.checked)}
         color="primary"
         />
+        
         <p>
           {isPublic? "🌍 This post will be public" : "🔒 This post is private"}
         </p>
+
         <button type="submit" disabled={loading}>
           {loading ? "Posting..." : "Post"}
         </button>

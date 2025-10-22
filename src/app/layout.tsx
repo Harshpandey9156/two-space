@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <h1 className="font-bold text-xl">TwoSpace 💞</h1>
           <div className="space-x-4">
             <a href="/" className="hover:underline">Home</a>
-            <a href="/dashboard" className="hover:underline">Dashboard</a>
+            <a href="/profile" className="hover:underline">Profile</a>
           </div>
         </nav>
         <main className="p-6">
