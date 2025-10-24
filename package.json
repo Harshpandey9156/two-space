@@ -11,17 +11,22 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@gsap/react": "^2.1.2",
     "@mui/material": "^7.3.4",
     "@tailwindcss/postcss": "^4.1.14",
     "cloudinary": "^2.7.0",
     "firebase": "^12.4.0",
     "firebase-admin": "^13.5.0",
+    "gsap": "^3.13.0",
+    "motion": "^12.23.24",
     "next": "15.5.4",
     "next-cloudinary": "^6.16.0",
+    "ogl": "^1.0.11",
     "postcss": "^8.5.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-router-dom": "^7.9.4",
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {

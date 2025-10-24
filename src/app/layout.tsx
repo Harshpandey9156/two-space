@@ -7,14 +7,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <nav className="bg-rose-500 text-white p-4 flex justify-between items-center">
+        {/* <nav className="bg-rose-500 text-white p-4 flex justify-between items-center">
           <h1 className="font-bold text-xl">TwoSpace 💞</h1>
           <div className="space-x-4">
             <a href="/" className="hover:underline">Home</a>
             <a href="/profile" className="hover:underline">Profile</a>
           </div>
-        </nav>
-        <main className="p-6">
+        </nav> */}
+        <main className="">
           <AuthProvider>
             {children}
           </AuthProvider>
